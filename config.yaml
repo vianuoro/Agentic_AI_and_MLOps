@@ -1,0 +1,11 @@
+data:
+  raw_path: "data/raw"
+  processed_path: "data/processed"
+
+model:
+  type: "lightgbm"
+  target: "price"
+  features: ["area_m2", "num_rooms", "location", "year_built"]
+
+monitoring:
+  drift_threshold: 0.15
