@@ -14,3 +14,4 @@ openai
 crewai
 agents
 lightgbm
+tensorflow-probability
