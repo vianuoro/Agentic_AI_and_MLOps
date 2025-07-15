@@ -1,109 +1,127 @@
 
-# 🧠 AutoML Agent for Real-Time Customer Support Ticket Triage
+# 🏡 Agentic AutoML System for Predicting House Prices in Sweden
 
-## ChatGPT reference
-
-
-## 🚀 Objective
-Build an **Agentic AI system** that autonomously retrains, tests, and deploys ML models to classify and prioritize incoming support tickets in real-time—integrated with an **MLOps pipeline** for CI/CD, monitoring, and model governance.
+## 🧠 Objective
+Build an **Agentic AI system** that autonomously ingests Swedish housing data, retrains ML models for price prediction, evaluates performance, and deploys updated models—powered by an **MLOps pipeline** for versioning, deployment, and monitoring.
 
 ---
 
 ## 🧩 Components Overview
 
-| Layer | Technology | Description |
-|-------|------------|-------------|
-| Agentic AI | LangChain / CrewAI + OpenAI | Orchestrate autonomous agents to manage data cleaning, retraining, validation, and deployment |
-| ML Models | Scikit-learn / HuggingFace Transformers | Model for ticket classification (urgency + topic) |
-| Data Pipeline | Apache Airflow / Prefect | Schedule and automate data ingestion and preprocessing |
-| Model Serving | FastAPI / BentoML | Expose model as a REST API |
-| CI/CD | GitHub Actions + MLflow | Automate training & deployment, track experiments |
-| Monitoring | Prometheus + Grafana / EvidentlyAI | Track model drift, latency, and accuracy in prod |
+| Layer         | Technology                    | Description                                               |
+|---------------|-------------------------------|-----------------------------------------------------------|
+| Agentic AI    | LangChain / CrewAI + OpenAI   | Orchestrate autonomous agents for data prep, modeling, evaluation, and deployment |
+| ML Models     | XGBoost / LightGBM / sklearn  | Regression models for predicting house prices            |
+| Data Pipeline | Prefect / Airflow             | Automate data ingestion and cleaning                      |
+| Serving       | FastAPI + Docker              | REST API to serve predictions                             |
+| CI/CD         | GitHub Actions + MLflow + DVC | Model tracking and automated deployment                   |
+| Monitoring    | EvidentlyAI / Prometheus      | Drift detection, accuracy monitoring, logging             |
 
 ---
 
-## 🔁 System Workflow
+## 🏡 Data
 
-### 1. **Ticket Ingestion**
-- Source: Zendesk or simulated via synthetic ticket generator.
-- Format: `{ "text": "Can't access my account...", "timestamp": "..." }`
+You can use public datasets like:
+- **[Booli](https://www.booli.se/)** via API (Swedish real estate platform)
+- **SCB (Statistics Sweden)**: Housing statistics
+- **Kaggle datasets**: E.g., “Sweden Real Estate” or scraped data
 
-### 2. **Agentic Task Orchestration**
-Use **CrewAI** or **LangGraph** to define a team of autonomous agents:
-
-- 🔹 `DataAgent`: Fetches and cleans new support ticket data.
-- 🔹 `TrainingAgent`: Retrains model if drift detected or performance drops.
-- 🔹 `EvalAgent`: Validates performance (cross-validation, benchmarks).
-- 🔹 `DeploymentAgent`: Deploys new version via CI/CD triggers.
-- 🔹 `MonitoringAgent`: Continuously checks production metrics.
-
-### 3. **MLOps Pipeline**
-- **Data versioning**: DVC or Delta Lake.
-- **Model training**: Pipelines built with `sklearn` or HuggingFace `Trainer`.
-- **Model registry**: MLflow for versioning and model metadata.
-- **Model deployment**: Serve with FastAPI and Docker, integrated with CI.
-
-### 4. **Monitoring and Feedback**
-- Track:
-  - Latency (Prometheus)
-  - Accuracy and precision over time (EvidentlyAI)
-  - Drift detection (feature distribution shifts)
-- Trigger retraining agent if:
-  - Drift > threshold
-  - Accuracy < target
+Typical features:
+- `location` (latitude, longitude)
+- `area_m2`
+- `num_rooms`
+- `year_built`
+- `property_type`
+- `asking_price`
 
 ---
 
-## 🧪 Hands-On Tasks Checklist
+## 🔁 Agentic System Architecture
 
-| Task | Tool | Outcome |
-|------|------|---------|
-| ✅ Load and clean support ticket data | Pandas / LangChain | Cleaned dataset |
-| ✅ Train baseline classifier (e.g., BERT) | HuggingFace | Model v1 |
-| ✅ Wrap model in FastAPI endpoint | FastAPI + Docker | API endpoint |
-| ✅ Set up GitHub Actions for CI/CD | GitHub Actions | Auto-deploy on commit |
-| ✅ Configure MLflow for experiment tracking | MLflow | UI with run metrics |
-| ✅ Create Agentic system to retrain and monitor | CrewAI / LangChain Agents | Autonomous loop |
-| ✅ Integrate monitoring with Prometheus & Grafana | Prometheus + Grafana | Live dashboards |
+### Agents
+
+- 🔹 `DataAgent`: Fetches new house listings, cleans and transforms data.
+- 🔹 `TrainingAgent`: Trains models (e.g., LightGBM, XGBoost) on the latest data.
+- 🔹 `EvalAgent`: Compares model versions (R², MAE) and selects best.
+- 🔹 `DeploymentAgent`: Deploys improved models via API.
+- 🔹 `MonitoringAgent`: Detects drift or performance drops in production.
+
+### Agent Execution Flow
+
+1. `DataAgent` pulls data from API or S3.
+2. `TrainingAgent` uses new data to train candidate models.
+3. `EvalAgent` compares models (using cross-validation & MLflow).
+4. If better, `DeploymentAgent` pushes the new model.
+5. `MonitoringAgent` watches for prediction drift or outliers in prod.
+
+---
+
+## ⚙️ MLOps Pipeline
+
+- **Experiment Tracking**: MLflow
+- **Data Versioning**: DVC
+- **Model Registry**: MLflow or S3
+- **CI/CD**: GitHub Actions + Docker + FastAPI
+- **Monitoring**: EvidentlyAI (for data drift + model metrics)
+
+---
+
+## 🧪 Hands-On Task Breakdown
+
+| Task                                  | Tool                       | Outcome                        |
+|---------------------------------------|----------------------------|--------------------------------|
+| ✅ Collect and clean housing data     | Pandas + API + DataAgent   | Cleaned dataset                |
+| ✅ Train baseline price predictor     | LightGBM / XGBoost         | Model v1                       |
+| ✅ Evaluate model with MLflow         | MLflow                     | R², MAE, plots                 |
+| ✅ Wrap model in FastAPI endpoint     | FastAPI + Docker           | `/predict` API                 |
+| ✅ GitHub Actions for CI/CD           | GitHub                     | Auto-deploy on main branch     |
+| ✅ Setup EvidentlyAI monitoring       | Evidently + Prometheus     | Dashboard & alerts             |
+| ✅ Build agent framework              | CrewAI / LangChain         | Agents coordinate training & deployment |
 
 ---
 
 ## 🖥️ Example Folder Structure
 
 ```
-auto_ticket_agent/
+house_price_agent/
 ├── agents/
 │   ├── data_agent.py
 │   ├── training_agent.py
+│   ├── eval_agent.py
+│   ├── deployment_agent.py
 │   └── monitoring_agent.py
 ├── api/
 │   └── app.py
 ├── ml/
 │   ├── train.py
-│   ├── eval.py
+│   ├── evaluate.py
 │   └── model.pkl
+├── data/
+│   ├── raw/
+│   └── processed/
 ├── dags/
-│   └── pipeline.py  # Airflow DAG
+│   └── data_pipeline.py  # Prefect or Airflow DAG
 ├── Dockerfile
+├── mlruns/  # MLflow tracking
 ├── .github/
 │   └── workflows/
 │       └── ci-cd.yml
-├── mlruns/  # MLflow tracking
 └── README.md
 ```
 
 ---
 
-## 🎯 Bonus Ideas
+## 🚀 Bonus Extensions
 
-- Add an LLM-based `SummarizationAgent` that creates summaries for long tickets.
-- Use **AutoTrain** or **AutoSklearn** for agent-driven hyperparameter tuning.
-- Connect with Slack or email for alerts from the MonitoringAgent.
+- Add LLM summarization of trends in regions ("Prices rising in Göteborg...").
+- Use a `FeatureEngineeringAgent` to generate new features (e.g., price per m², age of home).
+- Add map-based dashboards using Streamlit or Leaflet.js.
+- Integrate with a Slack bot to alert about model degradation or drift.
 
 ---
 
-## 🧠 Value of This Project
+## 🧠 Real-World Value
 
-- Combines **Agentic AI** with **practical MLOps**.
-- Simulates **real-world retraining & monitoring**.
-- Demonstrates autonomy in decision-making for retraining & deployment.
+- Simulates an **automated real estate ML system** in production.
+- Combines **autonomous decision-making** (via agents) with **robust DevOps**.
+- Offers real-time adaptation to changing housing market dynamics.
