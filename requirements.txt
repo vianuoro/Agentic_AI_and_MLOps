@@ -12,3 +12,5 @@ prefect
 langchain
 openai
 crewai
+agents
+lightgbm
