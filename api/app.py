@@ -1,12 +1,15 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import tensorflow as tf
+import joblib
 import numpy as np
 import pandas as pd
-
-MODEL_PATH = "mlruns/<run_id>/artifacts/model"  # Replace with your actual path or load dynamically
+import os
 
 app = FastAPI()
+
+MODEL_PATH = "ml/model_tf"
+SCALER_PATH = "ml/scaler.joblib"
 
 class HouseInput(BaseModel):
     area_m2: float
@@ -15,28 +18,27 @@ class HouseInput(BaseModel):
     property_type: str
     location: str
 
-def preprocess_input(data: dict):
-    # Example preprocessing to match training features
+@app.on_event("startup")
+def load_resources():
+    global model, scaler
+    model = tf.keras.models.load_model(MODEL_PATH)
+    scaler = joblib.load(SCALER_PATH)
+
+@app.post("/predict")
+def predict_price(input: HouseInput):
+    data = input.dict()
     df = pd.DataFrame([data])
     df["age"] = 2025 - df["year_built"]
     df = df.drop(columns=["year_built"])
 
-    # Dummy encoding for property_type and location should match training
-    # For demo, just drop categorical or one-hot encode here manually
-    # IMPORTANT: In practice, save and reuse your preprocessing pipeline/scaler
-    df = pd.get_dummies(df, columns=["property_type", "location"], drop_first=True)
+    # Dummy encoding placeholders (should match training)
+    for col in ["property_type_Semi-detached", "location_Suburb"]:  # example dummy cols
+        if col not in df.columns:
+            df[col] = 0
 
-    # Align columns with training set here (add missing columns with zeros)
+    df = pd.get_dummies(df)
+    df = df.reindex(columns=scaler.get_feature_names_out(), fill_value=0)
 
-    return df.values.astype(np.float32)
-
-@app.on_event("startup")
-def load_model():
-    global model
-    model = tf.keras.models.load_model(MODEL_PATH)
-
-@app.post("/predict")
-def predict_price(input: HouseInput):
-    x = preprocess_input(input.dict())
-    prediction = model.predict(x)
+    X = scaler.transform(df.values.astype(np.float32))
+    prediction = model.predict(X)
     return {"predicted_price": float(prediction[0][0])}

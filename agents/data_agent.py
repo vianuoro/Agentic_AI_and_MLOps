@@ -3,7 +3,6 @@ import os
 
 class DataAgent:
     def fetch_data(self, path="data/raw/housing.csv"):
-        # Simulated local fetch (replace with API or scraper as needed)
         if not os.path.exists(path):
             raise FileNotFoundError(f"Data not found at {path}")
         return pd.read_csv(path)
