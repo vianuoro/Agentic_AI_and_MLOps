@@ -8,7 +8,7 @@ import os
 
 app = FastAPI()
 
-MODEL_PATH = "ml/model_tf"
+MODEL_PATH = "ml/model_tf.keras"
 SCALER_PATH = "ml/scaler.joblib"
 
 class HouseInput(BaseModel):
