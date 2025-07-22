@@ -39,7 +39,7 @@ def train():
 
         model_path = "ml/model_tf.keras"
         model.save(model_path)
-        mlflow.tensorflow.log_model(tf_saved_model_dir=model_path, artifact_path="model")
+        mlflow.tensorflow.log_model(model, artifact_path="model")
 
         scaler_path = "ml/scaler.joblib"
         joblib.dump(scaler, scaler_path)
