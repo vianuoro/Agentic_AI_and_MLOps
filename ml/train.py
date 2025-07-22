@@ -7,8 +7,8 @@ from sklearn.preprocessing import StandardScaler
 import joblib
 import os
 
-from agents.data_agent import DataAgent
-from agents.training_agent import TrainingAgent
+from hp_agents.data_agent import DataAgent
+from hp_agents.training_agent import TrainingAgent
 
 def train():
     agent = DataAgent()
