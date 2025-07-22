@@ -24,4 +24,6 @@ jobs:
         pip uninstall -y agents || true
 
     - name: Train model
-      run: python ml/train.py
+      run: |
+        export PYTHONPATH="${PYTHONPATH}:$(pwd)"
+        python ml/train.py
