@@ -37,7 +37,7 @@ def train():
         mlflow.log_metric("val_mae", val_mae)
         mlflow.log_metric("val_loss", val_loss)
 
-        model_path = "ml/model_tf"
+        model_path = "ml/model_tf.keras"
         model.save(model_path)
         mlflow.tensorflow.log_model(tf_saved_model_dir=model_path, artifact_path="model")
 
