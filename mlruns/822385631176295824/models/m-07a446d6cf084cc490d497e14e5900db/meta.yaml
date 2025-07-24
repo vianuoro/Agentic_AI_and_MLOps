@@ -1,0 +1,10 @@
+artifact_location: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/models/m-07a446d6cf084cc490d497e14e5900db/artifacts
+creation_timestamp: 1753385450784
+experiment_id: '822385631176295824'
+last_updated_timestamp: 1753385456439
+model_id: m-07a446d6cf084cc490d497e14e5900db
+model_type: null
+name: model
+source_run_id: d7360daa3de3456e83c0891c68e80376
+status: 2
+status_message: null

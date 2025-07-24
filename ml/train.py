@@ -53,12 +53,13 @@ def train():
         y_pred = model.predict(X_val).flatten()
         signature = infer_signature(X_val, y_pred)
 
+        logged_model_uri = f"runs:/{mlflow.active_run().info.run_id}/model"
+
         eval_results = mlflow.evaluate(
-            model=model,
+            model=logged_model_uri,
             data=X_val,
             targets=y_val,
-            model_type="regressor",
-            evaluators=["default"]
+            model_type="regressor"
         )
 
         print(f"📊 Evaluation results:\n{eval_results.metrics}")

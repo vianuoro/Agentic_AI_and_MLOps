@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/ee79988c462f4c3d90020f00603a0259/artifacts
+end_time: 1753385364829
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: ee79988c462f4c3d90020f00603a0259
+run_name: capricious-ant-208
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753385351631
+status: 4
+tags: []
+user_id: ale
