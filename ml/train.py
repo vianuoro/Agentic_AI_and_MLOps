@@ -58,8 +58,7 @@ def train():
             data=X_val,
             targets=y_val,
             model_type="regressor",
-            evaluators=["default"],
-            predictions=y_pred
+            evaluators=["default"]
         )
 
         print(f"📊 Evaluation results:\n{eval_results.metrics}")

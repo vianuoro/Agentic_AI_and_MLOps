@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/1fcecf98cbaf42dbbe8f4ef290dd633f/artifacts
+end_time: 1753378637292
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: 1fcecf98cbaf42dbbe8f4ef290dd633f
+run_name: auspicious-goose-66
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753378625080
+status: 4
+tags: []
+user_id: ale

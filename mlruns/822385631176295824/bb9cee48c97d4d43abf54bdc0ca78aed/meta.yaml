@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/bb9cee48c97d4d43abf54bdc0ca78aed/artifacts
+end_time: 1753217810034
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: bb9cee48c97d4d43abf54bdc0ca78aed
+run_name: luminous-ant-619
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753217796851
+status: 4
+tags: []
+user_id: ale

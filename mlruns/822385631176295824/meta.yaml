@@ -1,0 +1,6 @@
+artifact_location: file:///home/ale/git/house_price_agent/mlruns/822385631176295824
+creation_time: 1753217796722
+experiment_id: '822385631176295824'
+last_update_time: 1753217796722
+lifecycle_stage: active
+name: house-price-agent-tf

@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/17a88d4b71fb4c6496998105f60d783d/artifacts
+end_time: 1753385076309
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: 17a88d4b71fb4c6496998105f60d783d
+run_name: loud-ray-91
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753385065031
+status: 4
+tags: []
+user_id: ale
