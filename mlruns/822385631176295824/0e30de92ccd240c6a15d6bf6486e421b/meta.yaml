@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/0e30de92ccd240c6a15d6bf6486e421b/artifacts
+end_time: 1753385862837
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: 0e30de92ccd240c6a15d6bf6486e421b
+run_name: industrious-croc-264
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753385850996
+status: 4
+tags: []
+user_id: ale

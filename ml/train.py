@@ -12,6 +12,8 @@ from hp_agents.data_agent import DataAgent
 from hp_agents.training_agent import TrainingAgent
 import matplotlib.pyplot as plt
 
+from mlflow.tracking import MlflowClient
+
 def train():
     agent = DataAgent()
     raw_df = agent.fetch_data()
@@ -53,13 +55,19 @@ def train():
         y_pred = model.predict(X_val).flatten()
         signature = infer_signature(X_val, y_pred)
 
-        logged_model_uri = f"runs:/{mlflow.active_run().info.run_id}/model"
+        # 🔍 Evaluate model with MLflow
+        import pandas as pd
+
+        # Rebuild X_val_df with column names
+        X_val_df = pd.DataFrame(X_val, columns=[f"feature_{i}" for i in range(X_val.shape[1])])
+        X_val_df["price"] = y_val  # Add the target column
 
         eval_results = mlflow.evaluate(
-            model=logged_model_uri,
-            data=X_val,
-            targets=y_val,
-            model_type="regressor"
+            model=model,
+            data=X_val_df,
+            targets="price",
+            model_type="regressor",
+            evaluators=["default"]
         )
 
         print(f"📊 Evaluation results:\n{eval_results.metrics}")
@@ -104,7 +112,46 @@ def train():
             f.write(report_md)
         mlflow.log_artifact(report_path)
 
-        print(f"Model trained and logged. Val MAE: {val_mae:.4f}")
+        # 🔄 Auto-promotion logic to model registry
+        model_name = "HousePricePredictorTF"
+        run_id = run.info.run_id
+        model_uri = f"runs:/{run_id}/model"
+
+        result = mlflow.register_model(model_uri=model_uri, name=model_name)
+
+        client = MlflowClient()
+        all_versions = client.search_model_versions(f"name='{model_name}'")
+
+        # Find best version based on val_mae
+        best_version = None
+        best_mae = float("inf")
+        for v in all_versions:
+            val_mae_logged = client.get_metric_history(v.run_id, "val_mae")
+            if val_mae_logged:
+                mae_val = val_mae_logged[-1].value
+                if mae_val < best_mae:
+                    best_mae = mae_val
+                    best_version = v.version
+
+        # Promote best version to Production
+        if best_version == result.version:
+            client.transition_model_version_stage(
+                name=model_name,
+                version=best_version,
+                stage="Production",
+                archive_existing_versions=True
+            )
+            print(f"🚀 Auto-promoted model version {best_version} to Production")
+        else:
+            client.transition_model_version_stage(
+                name=model_name,
+                version=result.version,
+                stage="Staging",
+                archive_existing_versions=False
+            )
+            print(f"📦 Registered model version {result.version} to Staging")
+
+        print(f"✅ Training complete. Val MAE: {val_mae:.4f}")
 
 if __name__ == "__main__":
     train()

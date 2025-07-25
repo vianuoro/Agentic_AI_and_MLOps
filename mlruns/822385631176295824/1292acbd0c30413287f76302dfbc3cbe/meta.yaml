@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/1292acbd0c30413287f76302dfbc3cbe/artifacts
+end_time: 1753387173371
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: 1292acbd0c30413287f76302dfbc3cbe
+run_name: able-squid-563
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753387158511
+status: 4
+tags: []
+user_id: ale

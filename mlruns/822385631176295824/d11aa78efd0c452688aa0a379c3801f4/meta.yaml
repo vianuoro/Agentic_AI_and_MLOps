@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/d11aa78efd0c452688aa0a379c3801f4/artifacts
+end_time: 1753387140094
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: d11aa78efd0c452688aa0a379c3801f4
+run_name: silent-shad-79
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753387128939
+status: 4
+tags: []
+user_id: ale

@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/a43db872702b44e3bfad92ffc86825aa/artifacts
+end_time: 1753462450204
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: a43db872702b44e3bfad92ffc86825aa
+run_name: rogue-eel-833
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753462438936
+status: 4
+tags: []
+user_id: ale

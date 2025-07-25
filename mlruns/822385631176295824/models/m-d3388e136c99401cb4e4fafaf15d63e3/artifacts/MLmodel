@@ -1,0 +1,22 @@
+artifact_path: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/models/m-d3388e136c99401cb4e4fafaf15d63e3/artifacts
+flavors:
+  python_function:
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.tensorflow
+    python_version: 3.12.3
+  tensorflow:
+    code: null
+    data: data
+    keras_version: 2.19.0
+    model_type: keras
+    save_format: tf
+mlflow_version: 3.1.3
+model_id: m-d3388e136c99401cb4e4fafaf15d63e3
+model_size_bytes: 59224
+model_uuid: m-d3388e136c99401cb4e4fafaf15d63e3
+prompts: null
+run_id: 28690a6630074ebab6d0725ae32b3df9
+utc_time_created: '2025-07-24 19:40:02.047880'

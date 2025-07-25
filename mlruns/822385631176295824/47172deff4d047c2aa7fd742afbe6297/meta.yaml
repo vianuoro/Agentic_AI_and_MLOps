@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/47172deff4d047c2aa7fd742afbe6297/artifacts
+end_time: 1753386837903
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: 47172deff4d047c2aa7fd742afbe6297
+run_name: likeable-fowl-927
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753386826717
+status: 4
+tags: []
+user_id: ale

@@ -1,0 +1,14 @@
+digest: 9904e9a5
+name: dataset
+profile: '{"num_rows": 30, "num_elements": 330}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "feature_0", "required": true},
+  {"type": "double", "name": "feature_1", "required": true}, {"type": "double", "name":
+  "feature_2", "required": true}, {"type": "double", "name": "feature_3", "required":
+  true}, {"type": "double", "name": "feature_4", "required": true}, {"type": "double",
+  "name": "feature_5", "required": true}, {"type": "double", "name": "feature_6",
+  "required": true}, {"type": "double", "name": "feature_7", "required": true}, {"type":
+  "double", "name": "feature_8", "required": true}, {"type": "double", "name": "feature_9",
+  "required": true}, {"type": "long", "name": "price", "required": true}]}'
+source: '{"tags": {"mlflow.user": "ale", "mlflow.source.name": "ml/train.py", "mlflow.source.type":
+  "LOCAL", "mlflow.source.git.commit": "010fa67308099edc22ff29b129c1ec5a61ce5740"}}'
+source_type: code

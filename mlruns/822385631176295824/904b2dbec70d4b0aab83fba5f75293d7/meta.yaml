@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/904b2dbec70d4b0aab83fba5f75293d7/artifacts
+end_time: 1753386256041
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: 904b2dbec70d4b0aab83fba5f75293d7
+run_name: omniscient-fish-576
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753386244115
+status: 3
+tags: []
+user_id: ale

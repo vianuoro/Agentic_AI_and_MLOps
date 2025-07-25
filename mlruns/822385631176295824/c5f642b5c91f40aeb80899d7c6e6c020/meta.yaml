@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/c5f642b5c91f40aeb80899d7c6e6c020/artifacts
+end_time: 1753462160196
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: c5f642b5c91f40aeb80899d7c6e6c020
+run_name: polite-ape-611
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753462148687
+status: 4
+tags: []
+user_id: ale

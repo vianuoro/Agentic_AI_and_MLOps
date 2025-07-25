@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/76ba4723b1aa4fcea2d9d3687073e013/artifacts
+end_time: 1753386638269
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: 76ba4723b1aa4fcea2d9d3687073e013
+run_name: salty-fawn-650
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753386626192
+status: 4
+tags: []
+user_id: ale

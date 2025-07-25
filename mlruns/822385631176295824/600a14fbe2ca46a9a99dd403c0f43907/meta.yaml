@@ -1,0 +1,14 @@
+artifact_uri: file:///home/ale/git/house_price_agent/mlruns/822385631176295824/600a14fbe2ca46a9a99dd403c0f43907/artifacts
+end_time: 1753461986856
+entry_point_name: ''
+experiment_id: '822385631176295824'
+lifecycle_stage: active
+run_id: 600a14fbe2ca46a9a99dd403c0f43907
+run_name: fun-moth-22
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753461975620
+status: 4
+tags: []
+user_id: ale
